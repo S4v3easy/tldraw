@@ -173,8 +173,8 @@ export class BemoDO extends DurableObject<Environment> {
 						if (!this._room) return
 						try {
 							await this.persistToDatabase()
-						} catch {
-							// already logged
+						} catch (e) {
+							console.error('Failed to persist to database on session removed', e)
 						}
 						this._room = null
 						room.close()
